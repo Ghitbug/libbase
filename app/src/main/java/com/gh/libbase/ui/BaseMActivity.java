@@ -1,0 +1,106 @@
+package com.gh.libbase.ui;
+
+import android.os.Bundle;
+
+import androidx.annotation.Nullable;
+import androidx.lifecycle.MutableLiveData;
+
+import com.gh.libbase.live.AbsViewModel;
+import com.gh.libbase.live.BaseListVo;
+import com.gh.libbase.live.LoadInterface;
+import com.gh.libbase.live.LoadObserver;
+import com.gh.libbase.utils.ParameterizedTypeUtil;
+
+
+
+/**
+ * BaseMActivity
+ *
+ * @version 4.0.0
+ * @auth wangchaoyong
+ * @time 2019/10/21
+ * @description applibrary
+ */
+public class BaseMActivity<T extends AbsViewModel> extends BaseActivity implements LoadInterface {
+    protected T mViewModel;
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initViewModel();
+    }
+
+    private void initViewModel() {
+        mViewModel = ParameterizedTypeUtil.VMProviders(this);
+        if (null != mViewModel && !mViewModel.getClass().getSimpleName().equals(AbsViewModel.class.getSimpleName())) {
+            mViewModel.setFragmentName(getClassName());
+            mViewModel.getLoadState().observe(this, new LoadObserver(this));
+            dataObserver();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mViewModel == null) {
+            initViewModel();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (mViewModel != null) mViewModel.unSubscribe();
+        mViewModel = null;
+        super.onDestroy();
+    }
+
+    protected <M> MutableLiveData<M> registerObserver(Class<M> tClass) {
+        return registerObserver(tClass, "");
+    }
+
+    protected <M> MutableLiveData<M> registerObserver(Class<M> tClass, String tag) {
+        String event = getClassName().concat(tClass.getSimpleName());
+        event = event.concat(tag);
+        return mViewModel.putLiveBus(event);
+    }
+
+    protected <M> MutableLiveData<BaseListVo<M>> registerObservers(Class<M> tClass) {
+        String event = getClassName().concat(tClass.getSimpleName()).concat("list");
+        return mViewModel.putLiveBus(event);
+    }
+
+    protected <M> MutableLiveData<BaseListVo<M>> registerObservers(Class<M> tClass, String tag) {
+        String event = getClassName().concat(tClass.getSimpleName()).concat("list");
+        event = event.concat(tag);
+        return mViewModel.putLiveBus(event);
+    }
+
+    @Override
+    public void dataObserver() {
+
+    }
+
+    @Override
+    public void showSuccess(int state, String msg) {
+
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void showError(int state, String msg) {
+        toast(msg);
+    }
+
+    @Override
+    public String getClassName() {
+        return getClass().getSimpleName() + getStateEventKey();
+    }
+
+    @Override
+    public String getStateEventKey() {
+        return "";
+    }
+}

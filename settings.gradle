@@ -1,2 +1,3 @@
 rootProject.name = "libbase"
 include ':app'
+include ':lib_fragmentation'
