@@ -4,7 +4,7 @@ package com.gh.libbase.live;
  * BaseResult
  *
  * @version 4.0.0
- * @auth wangchaoyong
+ * @auth GH
  * @time 2019/10/21
  * @description applibrary
  */

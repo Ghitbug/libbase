@@ -13,7 +13,6 @@ import com.gh.libbase.utils.RxFragmentUtil
 import com.gh.libbase.view.HeaderLayout
 import com.gyf.immersionbar.ImmersionBar
 import me.yokeyword.fragmentation.SupportFragment
-import org.wcy.android.interfaces.*
 
 
 open class BaseFragment : SupportFragment(), ClickAction, BundleAction, ResourcesAction,

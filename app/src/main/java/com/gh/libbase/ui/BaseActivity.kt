@@ -6,7 +6,6 @@ import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
-import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import com.gh.libbase.R
 import com.gh.libbase.interfaces.*
@@ -23,7 +22,9 @@ import me.yokeyword.fragmentation.SupportFragment
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator
 import me.yokeyword.fragmentation.anim.FragmentAnimator
 
-
+/**
+ *
+ */
 open class BaseActivity : SupportActivity(), BackHandledInterface, ClickAction, BundleAction,
     ResourcesAction, HandlerAction,ContextAction {
     var headerLayout: HeaderLayout? = null

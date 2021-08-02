@@ -15,12 +15,12 @@ import com.gh.libbase.utils.ParameterizedTypeUtil;
  * BaseMFragment
  *
  * @version 4.0.0
- * @auth wangchaoyong
+ * @auth GH
  * @time 2019/10/21
  * @description applibrary
  */
-public class BaseMFragment<T extends AbsViewModel> extends BaseFragment implements LoadInterface {
-    protected T mViewModel;
+public class BaseMFragment<VM extends AbsViewModel> extends BaseFragment implements LoadInterface {
+    protected VM mViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,28 +28,33 @@ public class BaseMFragment<T extends AbsViewModel> extends BaseFragment implemen
         initViewModel();
     }
 
-    private void initViewModel() {
+    public VM initViewModel() {
         mViewModel = ParameterizedTypeUtil.VMProviders(this);
         if (null != mViewModel && !mViewModel.getClass().getSimpleName().equals(AbsViewModel.class.getSimpleName())) {
             mViewModel.setFragmentName(getClassName());
             mViewModel.getLoadState().observe(this, new LoadObserver(this));
-            dataObserver();
+
         }
+        return mViewModel;
     }
 
-    @Override
-    public void finishFramager() {
-        if (mViewModel != null) mViewModel.unSubscribe();
-        mViewModel = null;
-        super.finishFramager();
-    }
+
 
     @Override
     public void onResume() {
         super.onResume();
         if (mViewModel == null) {
             initViewModel();
+            initDataObserver();
         }
+    }
+
+
+    @Override
+    public void finishFramager() {
+        if (mViewModel != null) mViewModel.unSubscribe();
+        mViewModel = null;
+        super.finishFramager();
     }
 
     protected <M> MutableLiveData<M> registerObserver(Class<M> tClass) {
@@ -74,7 +79,7 @@ public class BaseMFragment<T extends AbsViewModel> extends BaseFragment implemen
     }
 
     @Override
-    public void dataObserver() {
+    public void initDataObserver() {
 
     }
 
@@ -103,4 +108,18 @@ public class BaseMFragment<T extends AbsViewModel> extends BaseFragment implemen
         return "";
     }
 
+    @Override
+    public void initParam() {
+
+    }
+
+    @Override
+    public void initData() {
+
+    }
+
+    @Override
+    public void initViewObservable() {
+
+    }
 }

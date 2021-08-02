@@ -7,7 +7,7 @@ import java.util.List;
  * BaseListVo
  *
  * @version 4.0.0
- * @auth wangchaoyong
+ * @auth GH
  * @time 2019/2/14
  * @description YjSales
  */

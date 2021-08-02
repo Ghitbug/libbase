@@ -12,9 +12,8 @@ import java.lang.reflect.Type;
 /**
  * ParameterizedTypeUtil
  *
- * @auth wangchaoyong
+ * @auth GH
  * @time 16:48
- * @description 友商云V3.0
  */
 
 public class ParameterizedTypeUtil {

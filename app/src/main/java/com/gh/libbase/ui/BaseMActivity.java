@@ -17,25 +17,22 @@ import com.gh.libbase.utils.ParameterizedTypeUtil;
  * BaseMActivity
  *
  * @version 4.0.0
- * @auth wangchaoyong
+ * @auth GH
  * @time 2019/10/21
  * @description applibrary
  */
-public class BaseMActivity<T extends AbsViewModel> extends BaseActivity implements LoadInterface {
-    protected T mViewModel;
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initViewModel();
-    }
+public class BaseMActivity<VM extends AbsViewModel> extends BaseActivity implements LoadInterface {
 
-    private void initViewModel() {
+    protected VM mViewModel;
+
+    public VM initViewModel() {
         mViewModel = ParameterizedTypeUtil.VMProviders(this);
         if (null != mViewModel && !mViewModel.getClass().getSimpleName().equals(AbsViewModel.class.getSimpleName())) {
             mViewModel.setFragmentName(getClassName());
             mViewModel.getLoadState().observe(this, new LoadObserver(this));
-            dataObserver();
         }
+
+        return mViewModel;
     }
 
     @Override
@@ -43,15 +40,11 @@ public class BaseMActivity<T extends AbsViewModel> extends BaseActivity implemen
         super.onResume();
         if (mViewModel == null) {
             initViewModel();
+            initDataObserver();
         }
     }
 
-    @Override
-    protected void onDestroy() {
-        if (mViewModel != null) mViewModel.unSubscribe();
-        mViewModel = null;
-        super.onDestroy();
-    }
+
 
     protected <M> MutableLiveData<M> registerObserver(Class<M> tClass) {
         return registerObserver(tClass, "");
@@ -75,7 +68,7 @@ public class BaseMActivity<T extends AbsViewModel> extends BaseActivity implemen
     }
 
     @Override
-    public void dataObserver() {
+    public void initDataObserver() {
 
     }
 
@@ -102,5 +95,20 @@ public class BaseMActivity<T extends AbsViewModel> extends BaseActivity implemen
     @Override
     public String getStateEventKey() {
         return "";
+    }
+
+    @Override
+    public void initParam() {
+
+    }
+
+    @Override
+    public void initData() {
+
+    }
+
+    @Override
+    public void initViewObservable() {
+
     }
 }

@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.trello.rxlifecycle4.components.support.RxAppCompatActivity;
+
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 /**
@@ -17,7 +19,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
  * <p>
  * Created by YoKey on 17/6/20.
  */
-public class SupportActivity extends AppCompatActivity implements ISupportActivity {
+public class SupportActivity extends RxAppCompatActivity implements ISupportActivity {
     final SupportActivityDelegate mDelegate = new SupportActivityDelegate(this);
 
     @Override

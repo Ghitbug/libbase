@@ -26,9 +26,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures {
-        viewBinding true
+    
+    dataBinding {
+        enabled true
     }
+
+
 }
 
 dependencies {
@@ -54,6 +57,8 @@ dependencies {
 
     api rootProject.depsLibs.lifecycle
     annotationProcessor rootProject.depsLibs.lifecycleCompiler
+    api rootProject.depsLibs.rxlifecycle
+    api rootProject.depsLibs.rxlifecycle_components
 
 
 

@@ -9,6 +9,8 @@ import android.view.animation.Animation;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.trello.rxlifecycle4.components.support.RxFragment;
+
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 /**
@@ -17,7 +19,7 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
  * {@link Fragment} APIs.
  * Created by YoKey on 17/6/22.
  */
-public class SupportFragment extends Fragment implements ISupportFragment {
+public class SupportFragment extends RxFragment implements ISupportFragment {
     final SupportFragmentDelegate mDelegate = new SupportFragmentDelegate(this);
     protected SupportActivity _mActivity;
 

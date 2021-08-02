@@ -1,7 +1,7 @@
 package com.gh.libbase.live
 
 import android.content.Context
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 
@@ -10,8 +10,12 @@ open class AbsRepository {
     var fragmentName = ""
     private var mCompositeSubscription: CompositeDisposable? = null
     private var mContext: Context? = null
-    var viewModel: ViewModel? = null
 
+    var loadState: MutableLiveData<String> ?= null
+
+    init {
+        loadState = MutableLiveData()
+    }
 
 
 
@@ -20,7 +24,7 @@ open class AbsRepository {
             mCompositeSubscription = CompositeDisposable()
         }
         disposable.let {
-            mCompositeSubscription!!.add(it)
+            mCompositeSubscription?.add(it)
         }
     }
 
@@ -31,12 +35,14 @@ open class AbsRepository {
         }
     }
 
-    fun setmContext(mContext: Context?) {
-        this.mContext = mContext
+
+    /**
+     * ViewModel销毁时清除Model，与ViewModel共消亡。Model层同样不能持有长生命周期对象
+     */
+    open fun onCleared(){
+
     }
 
-    fun getmContext(): Context? {
-        return mContext
-    }
+
 
 }
