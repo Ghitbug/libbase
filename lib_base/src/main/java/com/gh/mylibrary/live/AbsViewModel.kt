@@ -7,6 +7,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import com.gh.mylibrary.interfaces.StateConstants
 import com.gh.mylibrary.utils.ParameterizedTypeUtil
+import com.gh.mylibrary.utils.RxActivityTool
 import com.gh.mylibrary.utils.RxDataTool
 import com.trello.rxlifecycle4.LifecycleProvider
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -32,10 +33,11 @@ open class AbsViewModel<T : AbsRepository>(application: Application) : AndroidVi
 
     init {
         mCompositeDisposable = CompositeDisposable()
-        /*mRepository?.let {
+        //注意
+        mRepository?.let {
             it.setmContext(RxActivityTool.currentActivity())
-             mRepository!!.viewModel = this
-        }*/
+             mRepository!!.setViewModel(this)
+        }
     }
 
     protected open fun addSubscribe(disposable: Disposable?) {

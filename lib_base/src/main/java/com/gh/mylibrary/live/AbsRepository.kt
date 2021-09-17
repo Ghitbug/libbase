@@ -2,6 +2,7 @@ package com.gh.mylibrary.live
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 
@@ -10,6 +11,7 @@ open class AbsRepository {
     var fragmentName = ""
     private var mCompositeSubscription: CompositeDisposable? = null
     private var mContext: Context? = null
+    private var viewModel: ViewModel? = null
 
     var loadState: MutableLiveData<String> ?= null
 
@@ -17,6 +19,13 @@ open class AbsRepository {
         loadState = MutableLiveData()
     }
 
+    fun getViewModel(): ViewModel? {
+        return viewModel
+    }
+
+    fun setViewModel(var1: ViewModel?) {
+        viewModel = var1
+    }
 
 
     fun addDisposable(disposable: Disposable) {
@@ -41,6 +50,14 @@ open class AbsRepository {
      */
     open fun onCleared(){
 
+    }
+
+    fun setmContext(mContext: Context?) {
+        this.mContext = mContext
+    }
+
+    fun getmContext(): Context? {
+        return mContext
     }
 
 
