@@ -45,7 +45,7 @@ dependencies {
 
     api rootProject.depsLibs.liveEventBus
     api rootProject.depsLibs.multidex
-    api rootProject.depsLibs.background
+    //api rootProject.depsLibs.background
     api rootProject.depsLibs.immersionbar
     api rootProject.depsLibs.rxjava
     api rootProject.depsLibs.rxandroid

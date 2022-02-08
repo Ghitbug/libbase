@@ -16,7 +16,6 @@ import com.gh.libbase.utils.RxKeyboardTool
 import com.gh.libbase.view.HeaderLayout
 import com.gh.libbase.view.toast.ToastUtils
 import com.gyf.immersionbar.ImmersionBar
-import com.noober.background.BackgroundLibrary
 import me.yokeyword.fragmentation.SupportActivity
 import me.yokeyword.fragmentation.SupportFragment
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator
@@ -60,7 +59,6 @@ open class BaseActivity : SupportActivity(), BackHandledInterface, ClickAction, 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        BackgroundLibrary.inject(this)
         super.onCreate(savedInstanceState)
         finishInputWindow() //隐藏输入法
         RxActivityTool.addActivity(this)
