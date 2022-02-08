@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import com.gh.libbase.R;
 
-import me.yokeyword.fragmentation.R;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 /**

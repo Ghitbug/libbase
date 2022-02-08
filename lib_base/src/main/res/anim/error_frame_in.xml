@@ -10,7 +10,7 @@
             android:toAlpha="1"
             android:duration="400"/>
 
-    <org.wcy.android.view.toast.Rotate3dAnimation
+    <com.gh.libbase.view.toast.Rotate3dAnimation
             sweet:rollType="x"
             sweet:fromDeg="100"
             sweet:toDeg="0"

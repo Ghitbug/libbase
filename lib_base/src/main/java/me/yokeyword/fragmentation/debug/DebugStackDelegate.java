@@ -25,9 +25,10 @@ import java.util.List;
 import androidx.fragment.app.FragmentationMagician;
 
 
+import com.gh.libbase.R;
+
 import me.yokeyword.fragmentation.Fragmentation;
 import me.yokeyword.fragmentation.ISupportFragment;
-import me.yokeyword.fragmentation.R;
 
 /**
  * Created by YoKey on 17/6/13.
